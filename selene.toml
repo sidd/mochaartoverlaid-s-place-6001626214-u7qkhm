@@ -1,0 +1,36 @@
+std = "roblox"
+
+[rules]
+# Warn about unused variables
+unused_variable = "allow"
+
+# Warn about shadowing variables
+shadowing = "warn"
+
+# Warn about undefined variables
+undefined_variable = "warn"
+
+# Warn about incorrect standard library usage
+incorrect_standard_library_use = "warn"
+
+# Warn about empty if statements
+empty_if = "warn"
+
+# Warn about empty loops
+empty_loop = "warn"
+
+# Warn about if statements that could be simplified
+if_same_then_else = "warn"
+
+# Warn about multiple statements on one line
+multiple_statements = "warn"
+
+# Warn about parentheses that can be removed
+parenthese_conditions = "warn"
+
+# Warn about unbalanced assignments
+unbalanced_assignments = "warn"
+
+# Warn about unused function parameters
+unused_function_parameter = "allow"
+

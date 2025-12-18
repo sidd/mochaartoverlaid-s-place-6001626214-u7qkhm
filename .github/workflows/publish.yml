@@ -1,0 +1,75 @@
+name: Build and Test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  lint-and-typecheck:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Install Aftman
+        uses: ok-nick/setup-aftman@v0.4.1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Install tools via Aftman
+        id: aftman-install
+        run: aftman install
+      
+      - name: Download Roblox type definitions
+        run: |
+          curl -L -o globalTypes.d.luau https://raw.githubusercontent.com/JohnnyMorganz/luau-lsp/main/scripts/globalTypes.d.luau
+      
+      - name: Generate sourcemap
+        run: rojo sourcemap default.project.json --output sourcemap.json
+      
+      - name: Run Selene (Linting)
+        id: lint
+        run: selene src/
+      
+      - name: Check formatting with StyLua
+        id: format
+        run: stylua --check src/
+      
+      - name: Run Luau type checking
+        id: typecheck
+        run: luau-lsp analyze --sourcemap=sourcemap.json --ignore="**/*.spec.luau" --definitions=globalTypes.d.luau src/
+        continue-on-error: true
+  
+  build:
+    runs-on: ubuntu-latest
+    needs: lint-and-typecheck
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Install Aftman
+        uses: ok-nick/setup-aftman@v0.4.1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Install tools via Aftman
+        run: aftman install
+      
+      - name: Generate sourcemap
+        run: rojo sourcemap default.project.json --output sourcemap.json
+      
+      - name: Build place file
+        run: rojo build default.project.json --output place.rbxl
+      
+      - name: Upload place file as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: place-file
+          path: place.rbxl
+          retention-days: 30
+

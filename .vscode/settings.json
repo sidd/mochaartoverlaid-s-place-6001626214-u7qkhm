@@ -1,0 +1,19 @@
+{
+	"luau-lsp.require.mode": "relativeToFile",
+	"luau-lsp.require.directoryAliases": {
+		"@shared": "src/shared",
+		"@server": "src/server",
+		"@client": "src/client"
+	},
+	"luau-lsp.sourcemap.rojoProjectFile": "default.project.json",
+	"luau-lsp.sourcemap.autogenerate": true,
+	"luau-lsp.types.definitionFiles": ["globalTypes.d.luau"],
+	"[luau]": {
+		"editor.defaultFormatter": "JohnnyMorganz.stylua",
+		"editor.formatOnSave": true
+	},
+	"files.associations": {
+		"*.luau": "luau"
+	}
+}
+

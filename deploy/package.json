@@ -1,0 +1,30 @@
+{
+	"name": "hubhub-deploy",
+	"version": "1.0.0",
+	"description": "Automated deployment tool for publishing Roblox places from GitHub Actions",
+	"main": "dist/index.js",
+	"type": "module",
+	"scripts": {
+		"build": "tsc",
+		"start": "node dist/index.js",
+		"dev": "tsc && node dist/index.js",
+		"watch": "tsc --watch"
+	},
+	"keywords": [
+		"roblox",
+		"deployment",
+		"github-actions"
+	],
+	"author": "",
+	"license": "MIT",
+	"dependencies": {
+		"@octokit/rest": "^20.0.2",
+		"dotenv": "^16.3.1",
+		"node-fetch": "^3.3.2"
+	},
+	"devDependencies": {
+		"@types/node": "^20.10.5",
+		"typescript": "^5.3.3"
+	}
+}
+

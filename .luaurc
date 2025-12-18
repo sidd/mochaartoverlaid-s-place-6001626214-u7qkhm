@@ -1,0 +1,14 @@
+{
+  "languageMode": "strict",
+  "lint": {
+    "*": true,
+    "LocalUnused": false,
+    "FunctionUnused": false
+  },
+  "aliases": {
+    "@shared": "src/shared",
+    "@server": "src/server",
+    "@client": "src/client"
+  }
+}
+

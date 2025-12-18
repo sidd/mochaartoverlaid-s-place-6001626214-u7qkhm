@@ -1,0 +1,15 @@
+# Project place file
+/hubhub-template.rbxlx
+
+# Roblox Studio lock files
+/*.rbxlx.lock
+/*.rbxl.lock
+
+sourcemap.json
+
+# Deploy script
+/deploy/node_modules/
+/deploy/dist/
+/deploy/.env
+/deploy/deploy-state.json
+/deploy/temp/
